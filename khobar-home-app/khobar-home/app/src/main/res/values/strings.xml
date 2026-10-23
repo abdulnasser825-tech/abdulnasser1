@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">الواجهة</string>
+    <!-- غيّر الرابط هنا إذا تغيّر موقعك -->
+    <string name="start_url">https://zingy-florentine-6a8227.netlify.app/</string>
+</resources>
