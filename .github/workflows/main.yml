@@ -24,14 +24,16 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
 
-    - name: Build with Gradle
+    - name: Auto Find and Build with Gradle
       run: |
-        cd khobar-home-app/khobar-home
-        chmod +x gradlew
+        BUILD_DIR=$(dirname $(find . -name "settings.gradle" -not -path "*/.*"))
+        echo "تم العثور على المشروع في مجلد: $BUILD_DIR"
+        cd "$BUILD_DIR"
+        chmod +x gradlew || true
         ./gradlew assembleDebug --no-daemon
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: khobar-home-apk
-        path: khobar-home-app/khobar-home/app/build/outputs/apk/debug/app-debug.apk
+        path: '**/build/outputs/apk/debug/app-debug.apk'
